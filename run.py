@@ -11,14 +11,16 @@ while next_page:
     # extract all jobs on page
     new_df = job_inst.extract_jobs_page()
 
+    print(f"\n\nNEW DF:\n{new_df}")
+
     if job_df.empty:
         job_df = new_df
-
-    job_df = pd.concat(
-        [job_df, new_df],
-        axis=0,
-        ignore_index=True
-    )
+    else:
+        job_df = pd.concat(
+            [job_df, new_df],
+            axis=0,
+            ignore_index=True
+        )
 
     # check pagination
     next_page = job_inst.check_pagination()

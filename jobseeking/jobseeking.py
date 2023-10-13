@@ -13,7 +13,7 @@ import pandas as pd
 class Jobseeking(webdriver.Edge):
     def __init__(self) -> None:
         super(Jobseeking, self).__init__()
-        # self.implicitly_wait(30)
+        self.implicitly_wait(5)
         self.maximize_window()
 
     def land_first_page(self):
@@ -109,7 +109,6 @@ class Jobseeking(webdriver.Edge):
             print(f"tag name:{page_tag}")
 
             pagination.click()
-            # time.sleep(2)
 
             return 1 if page_tag == "a" else 0
         except Exception as e:
@@ -143,6 +142,7 @@ class Jobseeking(webdriver.Edge):
         print(f"result in current page:{len(jobs)}")
 
         job_df = pd.DataFrame()
+        
         # extract each job
         for job in jobs:
             try:
